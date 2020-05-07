@@ -52,8 +52,10 @@ export default {
           son[i].style.left = (Math.sin((ahd * i)) * radius * father.clientWidth / father.clientHeight + father.clientWidth / 2 - son[i].clientWidth / 2) + 'px'
           son[i].style.top = (Math.cos((ahd * i)) * radius + father.clientHeight / 2 - son[i].clientHeight / 2) + 'px'
         }
-        endWindows.style.left = father.clientWidth / 2 - endWindows.clientWidth / 2 + 'px'
-        endWindows.style.top = father.clientHeight / 2 - endWindows.clientHeight / 2 + 'px'
+        if (endWindows) {
+          endWindows.style.left = father.clientWidth / 2 - endWindows.clientWidth / 2 + 'px'
+          endWindows.style.top = father.clientHeight / 2 - endWindows.clientHeight / 2 + 'px'
+        }
       })
     },
     restart () {
@@ -71,10 +73,13 @@ export default {
   height:100%;
 }
 #playerGroup > div{
-  border-width:1px;
+  border-width:0px;
   border-style:solid;
   border-color:black;
   width:300px;
+}
+#endWindows {
+    border-width:0px;
 }
 
 </style>

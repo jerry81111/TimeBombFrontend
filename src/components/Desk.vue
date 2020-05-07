@@ -1,9 +1,9 @@
 <template>
   <div style="display:flex;height:100%;">
-    <div style="width:80%;">
+    <div style="width:80%;padding:2%;">
         <playerGroup></playerGroup>
     </div>
-    <div style="width:20%;padding:2%;">
+    <div style="width:20%;padding:2%;padding-left:0;">
           <scoreboard style="height:40%;"></scoreboard>
           <chatroom style="height:60%;"></chatroom>
     </div>

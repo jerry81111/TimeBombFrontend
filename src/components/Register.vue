@@ -1,13 +1,9 @@
 <template>
   <div>
    <span>Register Name:</span>
-    <br>
-    <br>
     <input type="text" v-model="playerName" placeholder="please insert name">
-    <br>
-    <br>
+    <input type="file" id="playerPic"><br>
     <button type="button" @click="queue">進行排隊</button>
-    <br>
     <span>{{errorMsg}}</span>
     <ul>
       <li v-for="player in playerList" :key="player.name">
@@ -66,7 +62,8 @@ export default {
       })
     },
     queue () {
-      this.$socket.emit('queue', this.playerName, this.$store.state.token)
+      let e = document.getElementById('playerPic')
+      this.$socket.emit('queue', this.playerName, this.$store.state.token, e.files[0])
     },
     start () {
       this.$socket.emit('startGame')
