@@ -2,7 +2,7 @@
   <div class = 'player'>
       <ul>
         <li v-for="(card, index) in player.cards" :key="index">
-            <img v-if="turn.token === token && card === 3 && selected === false" :src="require('../../static/images/gameCard'+ card+ '.jpg')" @click="selectCard(player.id,index)">
+            <img v-if="turn.token === token && card === 3 && selected === false" :src="require('../../static/images/gameCard'+ card+ '.jpg')" @click="selectCard(index)">
             <img v-else :src="require('../../static/images/gameCard'+ card+ '.jpg')">
 
         </li>
@@ -35,9 +35,9 @@ export default {
     }
   },
   methods: {
-    selectCard (player, card) {
-      if (this.$store.state.playerInfo.turn !== player) {
-        this.$socket.emit('selectCard', player, card)
+    selectCard (card) {
+      if (this.$store.state.playerInfo.turn !== this.index + 1) {
+        this.$socket.emit('selectCard', this.index + 1, card)
       }
     }
   }

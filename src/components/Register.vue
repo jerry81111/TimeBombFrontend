@@ -1,16 +1,20 @@
 <template>
   <div>
    <span>Register Name:</span>
-    <input type="text" v-model="playerName" placeholder="please insert name">
-    <input type="file" id="playerPic"><br>
-    <button type="button" @click="queue">進行排隊</button>
-    <span>{{errorMsg}}</span>
-    <ul>
-      <li v-for="player in playerList" :key="player.name">
+    <div><input type="text" v-model="playerName" placeholder="please insert name"></div>
+    <div><input type="file" id="playerPic"><br></div>
+    <div>
+      <button type="button" @click="queue">進行排隊</button>
+      <span>{{errorMsg}}</span>
+    </div>
+    <div>
+      <ul>
+        <li v-for="player in playerList" :key="player.name">
          {{player.name}}
-      </li>
-    </ul>
-    <button type="button" @click="start">開始遊戲</button>
+        </li>
+      </ul>
+    </div>
+    <div><button type="button" @click="start">開始遊戲</button></div>
   </div>
 </template>
 
@@ -49,6 +53,7 @@ export default {
         }
         if (res.msg === 'restart') {
           this.$router.push({ name: 'Register' })
+          this.$store.commit('setChatList', [])
         }
         if (res.msg === 'selectCard') {
           this.$store.commit('setPlayerInfo', res.obj)
@@ -80,4 +85,5 @@ h1, h2 {
 a {
   color: #42b983;
 }
+
 </style>

@@ -23,7 +23,7 @@ export default {
   },
   computed: {
     chatList: function () {
-      return this.$store.state.chatList
+      return this.$store.getters.getChatList
     }
   },
   watch: {

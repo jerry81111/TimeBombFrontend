@@ -14,15 +14,14 @@ const mutations = {
   setSelected (state, selected) {
     state.selected = selected
   },
-  setToken (state, token) {
-    state.playerInfo.token = token
-  },
   setPlayerInfo (state, playerInfo) {
     state.playerInfo = playerInfo
   },
-
   setPlayerList (state, playerList) {
     state.playerInfo.playerList = playerList
+  },
+  setChatList (state, chatList) {
+    state.chatList = chatList
   }
 }
 
@@ -42,6 +41,9 @@ const getters = {
   },
   getPlayerList (state) {
     return state.playerInfo.playerList
+  },
+  getChatList (state) {
+    return state.chatList
   }
 }
 

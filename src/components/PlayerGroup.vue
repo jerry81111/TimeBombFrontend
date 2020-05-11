@@ -32,6 +32,9 @@ export default {
         case 1:
           return '好人陣營獲勝'
       }
+    },
+    token: function () {
+      return this.$store.getters.getToken
     }
   },
   created () {
@@ -45,12 +48,14 @@ export default {
         let son = document.getElementsByClassName('players')
         let endWindows = document.getElementById('endWindows')
 
-        var radius = father.clientHeight / 2 - son[0].clientHeight / 1
-        var avd = 360 / son.length
-        var ahd = avd * Math.PI / 180
+        let radius = father.clientHeight / 2 - son[0].clientHeight / 1
+        let avd = 360 / son.length
+        let ahd = avd * Math.PI / 180
+        let sysToken = this.token
+        let index = this.$store.getters.getPlayerList.indexOf(this.$store.getters.getPlayerList.find(function (player) { return player.token === sysToken }))
         for (let i = 0; i < son.length; i++) {
-          son[i].style.left = (Math.sin((ahd * i)) * radius * father.clientWidth / father.clientHeight + father.clientWidth / 2 - son[i].clientWidth / 2) + 'px'
-          son[i].style.top = (Math.cos((ahd * i)) * radius + father.clientHeight / 2 - son[i].clientHeight / 2) + 'px'
+          son[i].style.left = (Math.sin((ahd * (i - index))) * radius * father.clientWidth / father.clientHeight + father.clientWidth / 2 - son[i].clientWidth / 2) + 'px'
+          son[i].style.top = (Math.cos((ahd * (i - index))) * radius + father.clientHeight / 2 - son[i].clientHeight / 2) + 'px'
         }
         if (endWindows) {
           endWindows.style.left = father.clientWidth / 2 - endWindows.clientWidth / 2 + 'px'
