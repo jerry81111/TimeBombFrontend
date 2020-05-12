@@ -9,9 +9,10 @@ import VueAxios from 'vue-axios'
 import store from './stores/playInfo.js'
 import io from 'socket.io-client'
 
+const url = 'http://10.10.1.38:3000'
+Vue.prototype.$url = url
+Vue.prototype.$socket = io(url)
 Vue.use(VueAxios, axios)
-Vue.prototype.$socket = io('http://10.10.1.38:3000')
-Vue.config.productionTip = false
 
 const originalPush = Router.prototype.push
 Router.prototype.push = function push (location) {

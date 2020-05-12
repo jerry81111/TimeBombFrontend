@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     init () {
-      this.axios.get('http://10.10.1.38:3000/getToken').then((res) => {
+      this.axios.get(this.$url + '/getToken').then((res) => {
         this.$store.state.token = res.data.obj
         console.log('init token: ' + this.$store.state.token)
       })

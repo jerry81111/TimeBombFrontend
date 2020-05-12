@@ -8,6 +8,10 @@
             {{endMsg}}
             <button type="button" @click="restart">再來一局</button>
       </span>
+      <span v-if="startMsg">
+          {{startMsg}}<img :src="require('../../static/images/character'+ character+ '.jpg')">
+
+      </span>
     </div>
   </div>
 </template>
@@ -17,6 +21,12 @@ import player from '@/components/Player'
 
 export default {
   name: 'PlayerGroup',
+  data () {
+    return {
+      character: '',
+      startMsg: ''
+    }
+  },
   components: {
     'player': player
   },
@@ -38,8 +48,7 @@ export default {
     }
   },
   created () {
-    window.addEventListener('resize', this.handleResize)
-    this.handleResize()
+    this.start()
   },
   methods: {
     handleResize () {
@@ -62,6 +71,25 @@ export default {
           endWindows.style.top = father.clientHeight / 2 - endWindows.clientHeight / 2 + 'px'
         }
       })
+    },
+    start () {
+      console.log('Playgroup create')
+      window.addEventListener('resize', this.handleResize)
+      this.handleResize()
+
+      let sysToken = this.token
+      this.character = this.$store.getters.getPlayerList.find(function (player) { return player.token === sysToken }).character
+      switch (this.character) {
+        case 0:
+          this.startMsg = '遊戲開始 你抽到的是壞人卡'
+          break
+        case 1:
+          this.startMsg = '遊戲開始 你抽到的是好人卡'
+          break
+      }
+      setTimeout(() => {
+        this.startMsg = ''
+      }, 3000)
     },
     restart () {
       this.$socket.emit('restart')

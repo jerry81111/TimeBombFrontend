@@ -2,7 +2,9 @@
   <div id = 'scoreboard'>
       <div>出牌 : {{turn.name}}</div>
       <div>玩家 : {{player.name}}</div>
-      <div><img :src="require('../../static/images/character'+ player.character+ '.jpg')"> </div>
+      <div>
+          <img :src="require('../../static/images/character'+ player.character+ '.jpg')">
+      </div>
       <div>
       <span  v-for="(card, index) of cards " v-bind:key="index">
         <img :src="require('../../static/images/gameCard'+ index+ '.jpg')"> * {{card}}
